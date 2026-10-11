@@ -53,5 +53,5 @@ def create_session():
     return ApiResponse(code=200,message="创建会话成功",data=session_id)
 
 if __name__ == "__main__":
-    import unicorn
-    unicorn.run(app,host="0.0.0.0",pot="8000")
+    import uvicorn
+    uvicorn.run(app,host="0.0.0.0",port="8000")
