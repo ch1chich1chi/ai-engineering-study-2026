@@ -2,6 +2,8 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
+logger = logging.getLogger(__name__)
+
 logging.debug("正在检查请求数据")
 logging.info("请求正常完成")
 logging.warning("响应速度有点慢")
