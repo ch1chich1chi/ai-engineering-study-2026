@@ -1,6 +1,9 @@
 import logging
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    )
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +17,8 @@ debug()：调试细节
 info()：程序正常运行
 warning()：出现了异常迹象,但还能继续
 error()：本次操作失败了
+
+%(... )s 是 logging 规定的占位符
 
 第一条 DEBUG 不显示,因为：
 level=logging.INFO
