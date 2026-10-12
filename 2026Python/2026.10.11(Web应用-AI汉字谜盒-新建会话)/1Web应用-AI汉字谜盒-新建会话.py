@@ -23,7 +23,7 @@ def generate_session_id():
 
 # 数据模型
 class ApiResponse(BaseModel):
-    Code : int
+    code : int
     message : str
     data : Any # 任意类型的数据
 
