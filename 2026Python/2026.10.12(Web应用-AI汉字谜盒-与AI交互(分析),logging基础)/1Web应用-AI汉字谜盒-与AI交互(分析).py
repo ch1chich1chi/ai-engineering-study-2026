@@ -47,7 +47,7 @@ def create_session():
     # 2.组装会话信息,保存到文件
     session_data = {
         "current_session":session_id,
-        "message":[]
+        "messages":[]
     }
     with open(f"sessions/{session_id}.json","w",encoding="utf-8") as f:
         json.dump(session_data,f,ensure_ascii=False,indent=2)
