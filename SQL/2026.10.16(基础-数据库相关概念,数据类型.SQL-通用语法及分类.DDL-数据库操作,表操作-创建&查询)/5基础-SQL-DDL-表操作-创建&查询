@@ -1,0 +1,29 @@
+DDL-表操作-查询
+查询当前数据库所有表
+SHOW TABLES;
+
+查询表结构
+DESC 表名;
+
+查询指定表的建表语句
+SHOW CREATE TABLE 表名;
+
+DDL-表操作-创建
+CREATE TABLE 表名(
+    字段1 字段1类型 [COMMENT 字段1注释],
+    ....  .......
+    字段n 字段n类型 [COMMENT 字段n注释]
+)[COMMENT 表注释];
+
+-- 注意:[...]为可选参数,最后一个字段后面没逗号
+
+creat table tb_user(
+    id int comment '编号',
+    name varchar(50) /*字符串,括号内是指定长度*/comment '姓名',
+    age int comment '年龄',
+    gender varchar(1) comment '性别'
+) comment '用户表';
+
+show tables; -- 可以看创建成功没
+desc tb_user; -- 查看字段类型
+show create table tb_user; --详细信息
