@@ -1,0 +1,43 @@
+DDL-表操作-修改
+添加字段
+ALTER TABLE 表名 ADD 字段名 类型(长度) [COMMENT] [约束];
+案例:
+    为emp表增加一个新的字段"昵称"为nickname,类型为varchar(20)
+    ALTER TABLE emp ADD nickname VARCHAR(20) comment '昵称';
+
+修改数据类型
+ALTER TABLE 表名 MODIFY 字段名 新数据类型(长度);
+
+修改字段名和字段类型
+ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型(长度) [COMMENT注释] [约束];
+案例:
+    将emp表的nickname字段修改为username,类型为varchar(30)
+    ALTER TABLE emp CHANGE nickname username varchar(30) COMMENT '用户名';
+
+DESC emp; --查询一下表结构看看修改
+
+删除字段
+ALTER TABLE 表名 DROP 字段名;
+案例:
+    将emp表的字段username删除
+    ALTER TABLE emp DROP username;
+    DESC emp;
+
+修改表名
+ALTER TABLE RENAME TO 新表名;
+案例:
+    将emp表的表名修改为employee
+    ALTER TABLE RENAME TO employee;
+    SHOW TABLES; -- 查询一下表
+
+删除表
+DROP TABLE [IF EXISTS] 表名;
+
+删除指定表,并重新创建该表(里面的数据没了)
+TRUNCATE TABLE 表名;
+
+drop table if exists tb_user;
+
+truncate table employee;
+
+--注意,在删除表时,表中的数据也会被删除
