@@ -1,6 +1,6 @@
 DDL-表操作-修改
 添加字段
-ALTER TABLE 表名 ADD 字段名 类型(长度) [COMMENT] [约束];
+ALTER TABLE 表名 ADD 字段名 类型(长度) [COMMENT注释] [约束];
 案例:
     为emp表增加一个新的字段"昵称"为nickname,类型为varchar(20)
     ALTER TABLE emp ADD nickname VARCHAR(20) comment '昵称';
