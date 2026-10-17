@@ -1,0 +1,57 @@
+表关系与字段约束
+
+1. 主键和外键
+
+主键 PRIMARY KEY：
+- 用来唯一标识表中的一条记录。
+- 例如 conversations.id 唯一标识一个会话。
+
+外键 FOREIGN KEY：
+- 保存另一张表中已存在的主键值，用来建立表之间的联系。
+- messages.conversation_id 是外键，它引用 conversations.id。
+- 外键后面括号里写的是当前表的外键字段，不是主键。
+
+示例：
+
+FOREIGN KEY (conversation_id) REFERENCES conversations(id)
+
+这句话表示：messages.conversation_id 必须引用 conversations.id 中已经存在的值。
+
+2. 一对多关系
+
+- 一个会话 conversations 可以包含多条消息 messages。
+- 一条消息只属于一个会话。
+- 因此 conversations 和 messages 是一对多关系。
+
+3. 常见字段约束
+
+NOT NULL
+- 字段不能是 NULL。
+- 它不一定能拦住空字符串 ""。
+
+CHECK
+- 检查数据是否满足指定条件。
+- CHECK (length(trim(content)) > 0) 可以拒绝空字符串和只有空格的内容。
+- CHECK (role IN ('user', 'assistant')) 限制 role 只能是指定值。
+
+DEFAULT CURRENT_TIMESTAMP
+- 插入数据时如果没有传入时间，自动使用当前时间。
+
+IF NOT EXISTS
+- 对象不存在时才创建，已存在时跳过，避免重复创建报错。
+- 它不会自动修改已存在的旧表结构。
+
+4. SQLite 与 MySQL 的常见类型对照
+
+SQLite           MySQL            常见用途
+INTEGER          INT              整数、编号
+TEXT             VARCHAR(n)/TEXT  字符串、长文本
+
+两者都使用 SQL，但具体数据类型和部分语法会有差异。
+
+5. SQLite 外键检查
+
+PRAGMA foreign_keys = ON;
+
+- SQLite 连接需要开启外键检查，外键约束才会实际执行。
+- 如果 conversations 中没有 id = 10 的会话，就不能插入 conversation_id = 10 的消息。
