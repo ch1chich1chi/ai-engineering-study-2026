@@ -27,7 +27,7 @@ ALTER TABLE 表名 DROP 字段名;
 ALTER TABLE 表名 RENAME TO 新表名;
 案例:
     将emp表的表名修改为employee
-    ALTER TABLE RENAME TO employee;
+    ALTER TABLE emp RENAME TO employee;
     SHOW TABLES; -- 查询一下表
 
 删除表
