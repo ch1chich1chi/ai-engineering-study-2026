@@ -16,7 +16,7 @@ DML-删除数据
 DELETE FROM 表名[WHERE 条件];
 /* 注意:
     DELETE语句的条件可以有,也可以没有,如果没有条件,则会删除整张表的数据
-    DELETE语句不能删除某一个字段的值(可以使用UPDATE,把值设置为NONE)
+    DELETE语句不能删除某一个字段的值(可以使用UPDATE,把值设置为NULL)
 */
 
 -- 删除gender为女的女员工
