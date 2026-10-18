@@ -1,0 +1,31 @@
+DML-介绍
+DML的英文全称是Data Manipulation Language(数据操作语言),用来对数据库表中的数据进行增删改操作
+添加数据(INSERT)
+修改数据(UPDATE)
+删除数据(DELETE)
+
+DML-添加数据
+1.给指定字段添加数据
+INSERT INTO 表名(字段名1,字段名2,...) VALUES (值1,值2,..);
+
+2.给全部字段添加数据
+INSERT INTO 表名 VALUES (值1,值2,...);
+
+3.批量添加数据
+INSERT INTO 表名(字段名1,字段名2,...) VALUES (值1,值2,...),(值1,值2,...),(值1,值2,...);
+INSERT INTO 表名 VALUES (值1,值2,...),(值1,值2,...),(值1,值2,...);
+
+/* 
+注意:
+    1.插入数据时,指定的字段顺序需要与值的顺序是一一对应的
+    2.字符串和日期型数据应该包含在引号中
+    3.插入的数据大小,应该在字段的规定范围内
+*/
+
+INSERT INTO employee(id,workno,name,gender,age,idcard,entrydate) VALUES (1,'1','Itcast','男',10,'123456789012345678','2000-01-01');
+
+SELECT * from employee;
+
+INSERT INTO employee VALUES (2,'2','张无忌','男',18,'1234567890123456789','2005-01-01');
+
+INSERT INTO employee VALUES (3,'3','韦一笑','男',38,'1234567890123456789','2005-01-01'),(4,'4','赵敏','女',18,'1234567890123456789','2005-01-01');

@@ -1,0 +1,26 @@
+DML-修改数据
+UPDATE 表名 SET 字段名1=值1,字段名2=值2,...[WHERE 条件];
+-- 注意:修改语句的条件可以有,也可以没有,如果没有条件,则会修改整张表的所有数据
+
+-- 接"1基础-SQL-DML-插入"
+-- 修改id为1的数据,将name修改为itheima
+UPDATE employee SET name = 'itheima' where id = 1;
+
+-- 修改id为1的数据,将name修改为小昭,gender修改为女
+UPDATE employee SET name = '小昭',gender = '女' WHERE id = 1;
+
+-- 将所有员工的入职日期修改为2008-01-01
+UPDATE employee SET entrydate = '2008-01-01';
+
+DML-删除数据
+DELETE FROM 表名[WHERE 条件];
+/* 注意:
+    DELETE语句的条件可以有,也可以没有,如果没有条件,则会删除整张表的数据
+    DELETE语句不能删除某一个字段的值(可以使用UPDATE,把值设置为NONE)
+*/
+
+-- 删除gender为女的女员工
+DELETE FROM employee WHERE gender = '女';
+
+-- 删除所有员工
+DELETE FROM employee;
