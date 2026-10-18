@@ -26,6 +26,6 @@ INSERT INTO employee(id,workno,name,gender,age,idcard,entrydate) VALUES (1,'1','
 
 SELECT * from employee;
 
-INSERT INTO employee VALUES (2,'2','张无忌','男',18,'1234567890123456789','2005-01-01');
+INSERT INTO employee VALUES (2,'2','张无忌','男',18,'123456789012345678','2005-01-01');
 
-INSERT INTO employee VALUES (3,'3','韦一笑','男',38,'1234567890123456789','2005-01-01'),(4,'4','赵敏','女',18,'1234567890123456789','2005-01-01');
+INSERT INTO employee VALUES (3,'3','韦一笑','男',38,'123456789012345678','2005-01-01'),(4,'4','赵敏','女',18,'123456789012345678','2005-01-01');
