@@ -1,0 +1,50 @@
+DQL-介绍
+DQL的英文全称是Data Query Language(数据查询语言),数据查询语言,用来查询数据库表中的记录
+查询关键字:SELECT
+
+DQL-语法
+SELECT
+        字段列表
+
+FROM
+        表名列表
+
+WHERE
+        条件列表
+
+GROUP BY
+        分组字段列表
+
+HAVING
+        排序字段列表
+
+LIMIT
+        分页参数
+
+DQL-基本查询
+1.查询多个字段
+SELECT 字段1,字段2,字段3... FROM 表名;
+SELECT * FROM 表名;
+
+2.设置别名
+SELECT 字段1 [AS 别名1],字段2 [AS 别名2] ... FROM 表名; -- 设置别名时,AS是可以省略的
+
+3.去除重复记录
+SELECT DISTINCT 字段列表 FROM 表名;
+
+-- 基本查询
+-- 1.查询指定字段 name,workno,age返回
+SELECT name,workno,age FROM emp;
+
+-- 2.查询所有字段返回
+SELECT id,workno,name,gender,age,idcard,workaddress,entrydate FROM emp;
+
+SELECT * FROM emp;
+
+-- 3.查询所有员工的工作地址,起别名
+SELECT workaddress AS '工作地址' FROM emp;
+
+SELECT workaddress  '工作地址' FROM emp;
+
+-- 4.查询公司员工的上班地址(不要重复)
+SELECT DISTINCT workaddress '工作地址' FROM emp;

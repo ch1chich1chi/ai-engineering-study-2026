@@ -1,0 +1,61 @@
+DQL-条件查询
+1.语法
+SELECT 字段列表 FROM 表名 WHERE 条件列表;
+
+2.条件
+比较运算符           功能
+>                   大于
+>=                大于等于
+<                   小于
+<=                小于等于
+=                   等于
+<>或!=             不等于
+BETWEEN...AND... 在某个范围之内(含最小值,最大值)
+IN(...)      在in之后的列表中的值,多选1
+LIKE 占位符   模糊匹配(_匹配单个字符,%匹配任意字符)
+IS NULL             是NULL
+
+逻辑运算符           功能
+AND 或 &&   并且(多个条件同时成立)
+OR 或 ||    或者(多个条件任意一个成立)
+NOT 或 !            非,不是
+
+-- 条件查询
+-- 1.查询年龄等于88的员工
+SELECT * FROM emp WHERE age = 88;
+
+-- 2.查询年龄小于20的员工信息
+SELECT * FROM emp WHERE age < 20;
+
+-- 3.查询年龄小于等于20的员工信息
+SELECT * FROM emp WHERE age <= 20;
+
+-- 4.查询没有身份证号的员工信息
+SELECT * FROM emp WHERE idcard IS NULL;
+
+-- 5.查询由身份证号的员工信息
+SELECT * FROM emp WHERE idcard IS NOT NULL;
+
+-- 6.查询年龄不等于88的员工信息
+SELECT * FROM emp WHERE age != 88;
+SELECT * FROM emp WHERE age <> 88;
+
+-- 7.查询年龄在15岁(包含)到20岁(包含)之间的员工信息
+SELECT * FROM emp WHERE age >= 15 AND age <= 20;
+SELECT * FROM emp WHERE age >= 15 && age <= 20;
+
+SELECT * FROM emp WHERE age BETWEEN 15 AND 20; -- BETWEEN后跟的是最小值,AND后跟的是最大值
+
+-- 8.查询性别为女且年龄小于25岁的员工信息
+SELECT * FROM emp WHERE gender = '女' AND age < 25;
+
+-- 9.查询年龄等于18或20或40的员工信息
+SELECT * FROM emp WHERE age = 18 OR age = 20 OR age = 40;
+SELECT * FROM emp WHERE age IN(18,20,40);
+
+-- 10.查询姓名为两个字的员工信息 _ %
+SELECT * FROM emp WHERE name LIKE '__';
+
+-- 11.查询身份证号最后一位是X的员工信息
+SELECT * FROM emp WHERE name LIKE '%X'; -- 前面是多少个字符无所谓,最后一个是X
+SELECT * FROM emp WHERE name LIKE '_________________X'; -- 十七个下划线
