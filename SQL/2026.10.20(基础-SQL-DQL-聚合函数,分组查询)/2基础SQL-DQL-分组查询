@@ -1,0 +1,22 @@
+DQL-分组查询
+1.语法
+SELECT 字段列表 FROM 表名 [WHERE 条件] GROUP BY 分组字段名 [HAVING 分组后过滤条件];
+
+2.where与having区别
+    执行时机不同:where是分组之前进行过滤,不满足where条件,不参与分组;而having是分组之后对结果进行过滤
+    判断条件不同:where不能对聚合函数进行判断,而having可以
+
+/* 注意:
+    执行顺序:where>聚合函数>having
+    分组之后,查询的字段一般为聚合函数和分组字段,查询其他字段无任何意义
+*/
+
+-- 分组查询
+-- 1.根据性别分组,统计男员工和女员工的数量
+SELECT gender,count(*) FROM emp GROUP BY gender;
+
+-- 2.根据性别分组,统计男员工和女员工的平均年龄
+SELECT gender,avg(age) FROM emp GROUP BY gender;
+
+-- 3.查询年龄小于45的员工,并根据工作地址分组,获取员工数量大于等于3的工作地址
+SELECT workaddress,count(*) address_count FROM emp WHERE age < 45 GROUP BY workaddress HAVING address_count >= 3;
