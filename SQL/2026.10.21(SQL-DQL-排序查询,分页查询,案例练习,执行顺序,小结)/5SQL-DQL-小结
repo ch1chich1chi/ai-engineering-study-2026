@@ -1,0 +1,21 @@
+1.DQL语句
+SELECT
+        字段列表 ----> 字段名 [AS] 别名
+
+FROM
+        表名列表
+
+WHERE
+        条件列表 ----> > >= < <= <> LIKE BETWEEN...AND in AND OR,分组前过滤
+
+GROUP BY
+        分组字段列表
+
+HAVING
+        分组后条件列表 ----> 分组后过滤
+
+ORDER BY
+        排序字段列表 ----> 升序ASC,降序DESC
+
+LIMIT
+        分页参数 ----> 起始索引(从0开始),每页展示记录数

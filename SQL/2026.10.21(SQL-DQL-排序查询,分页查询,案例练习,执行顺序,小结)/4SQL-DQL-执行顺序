@@ -1,0 +1,26 @@
+DQL-执行顺序
+
+    编写顺序                                         执行顺序
+SELECT                                          FROM
+        字段列表                                        表名列表
+
+FROM                                            WHERE 
+        表名列表                                        条件列表
+
+WHERE                                           GROUP BY
+        条件列表                                        分组字段列表
+
+GROUP BY                                        HAVING
+        分组字段列表                                    分组后条件列表
+
+HAVING                                          SELECT
+        分组后条件列表                                  字段列表
+
+ORDER BY                                        ORDER BY
+        排序字段列表                                    排序字段列表
+
+LIMIT                                           LIMIT
+        分页参数                                        分页参数
+
+-- 查询年龄大于15的员工的姓名 年龄,并根据年龄进行升序排序
+SELECT e.name ename , e.age eage FROM emp e WHERE e.age > 15 ORDER BY eage ASC;
