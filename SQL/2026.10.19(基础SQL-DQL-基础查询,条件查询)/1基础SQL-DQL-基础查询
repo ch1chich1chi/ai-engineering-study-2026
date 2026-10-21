@@ -16,6 +16,9 @@ GROUP BY
         分组字段列表
 
 HAVING
+        分组后条件列表
+
+ORDER BY
         排序字段列表
 
 LIMIT
