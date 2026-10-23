@@ -1,0 +1,20 @@
+案例:
+字段名       字段含义          字段类型         约束条件                   约束关键字
+id          ID唯一标识           int       主键,并且自动增长      PRIMARY KEY,AUTO_INCREMENT
+name          姓名           varchar(10)    不为空,并且唯一            NOT NULL,UNIQUE
+age           年龄               int      大于0,并且小于等于120             CHECK
+status        状态             char(1)   如果没有指定该值,默认为1           DEFAULT
+gender        性别             char(1)           无
+
+CREATE TABLE user(
+    id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+    name VARCHAR(10) NOT NULL UNIQUE COMMENT '姓名',
+    age INT CHECK (age > 0 AND age <= 120 ) COMMENT '年龄',
+    status CHAR(1) DEFAULT '1' COMMENT '状态',
+    gender CHAR(1) COMMENT '性别'
+)COMMENT '用户表'.
+
+-- 插入数据
+INSERT INTO user(name,age,status,gender) VALUES ('Tom1',19,'1','男'),('Tom2',25,'0','男');
+
+INSERT INTO user(name,age,status,gender) VALUES ('Tom3',19,'1','男');

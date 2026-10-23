@@ -1,0 +1,16 @@
+外键约束
+删除/更新行为
+行为                                                   说明
+NO ACTION    当在父表中删除/更新对应记录时,首先检查该记录是否有对应外键,如果有则不允许删除/更新(与RESTRICT一致)
+RESTRICT     当在父表中删除/更新对应记录时,首先检查该记录是否有对应外键,如果有则不允许删除/更新(与NO ACTION一致)
+CASCADE      当在父表中删除/更新对应记录时,首先检查该记录是否有对应外键,如果有,则也删除/更新外键在子表中的记录
+SET NULL     当在父表中删除对应记录时,首先检查该记录是否有对应外键,如果有则设置子表中该外键值为NULL(这就是要求该外键允许取NULL)
+SET DEFAULT  父表有变更时,子表将外键列设置成一个默认的值(innodb不支持)
+
+ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN (外键字段) REFERENCES 主表名(主表字段名) ON UPDATE CASCADE ON DELETE CASCADE;
+
+接"3基础-约束-外键约束"
+
+ALTER TABLE emp ADD CONSTRAINT fk_emp_dept_id FOREIGN KEY (dept_id) REFERENCES dept(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE emp ADD CONSTRAINT fk_emp_dept_id FOREIGN KEY (dept_id) REFERENCES dept(id) ON UPDATE SET NULL ON DELETE SET NULL;
