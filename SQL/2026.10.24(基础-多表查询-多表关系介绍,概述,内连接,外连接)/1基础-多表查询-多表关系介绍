@@ -1,0 +1,43 @@
+多表关系
+概述
+项目开发中,在进行数据库表结构设计时,会根据业务需求及业务模块之间的关系,分析并设计表结构,由于业务之间相互关联,所以各个表结构之间也存在着各种联系,基本上分为三种:
+    一对一(多对一)
+    多对多
+    一对一
+
+一对多(多对一)
+案例:部门 与 员工的关系
+关系:一个部门对应多个员工,一个员工对应一个部门
+实现:在多的一方建立外键,指向一的一方的主键
+
+多对多
+案例:学生 与 课程的关系
+关系:一个学生可以选修多门课程,一门课程也可以供多个学生选择
+实现:建立第三张中间表,中间表至少包含两个外键,分别关联两方主键
+CREATE TABLE student(
+    id INT AUTO_INCREMENT PRIMARY KEY COMMENT '主键ID',
+    name VARCHAR(10) COMMENT '姓名',
+    no VARCHAR(10) COMMENT '学号'
+)COMMENT '学生表';
+INSERT INTO student VALUES (NULL,'黛绮丝','2000100101'),(NULL,'谢逊','2000100102'),(NULL,'殷天正','2000100103'),(NULL,'韦一笑','2000100104');
+
+CREATE TABLE course(
+    id INT AUTO_INCREMENT PRIMARY KEY COMMENT '主键ID',
+    name VARCHAR(10) COMMENT '课程名称'
+)COMMENT '课程表';
+INSERT INTO course VALUES (NULL,'Java'),(NULL,'PHP'),(NULL,'MySQL'),(NULL,'Hadoop');
+
+CREATE TABLE student_course(
+    id INT AUTO_INCREMENT COMMENT '主键ID' PRIMARY KEY,
+    studentid INT NOT NULL COMMENT '学生ID',
+    courseid INT NOT NULL COMMENT '课程ID',
+    CONSTRAINT fk_courseid FOREIGN KEY (courseid) REFERENCES course (id),
+    CONSTRAINT fk_studentid FOREIGN KEY (studentid) REFERENCES student (id)
+)
+
+INSERT INTO student_course VALUES (NULL,1,1),(NULL,1,2),(NULL,1,3),(NULL,2,2),(NULL,2,3),(NULL,3,4)
+
+一对一
+案例:用户 与 用户详情的关系
+关系:一对一关系,多用于做单表拆分,将一张表的基础字段放在一张表中,其他详情字段放在另一张表中,以提升操作效率
+实现:在任意一方加入外键,关联另外一方的主键,并且设置外键为唯一的(UNIQUE)
