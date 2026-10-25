@@ -1,0 +1,37 @@
+文件路径与 Path.parents
+
+1. 相对路径从哪里开始找
+相对路径没有写盘符和完整目录，例如 data/chat.db。
+它从程序启动时的“当前工作目录”开始找，不一定从 .py 文件所在目录开始。
+例如当前工作目录是 F:\学习，那么 data/chat.db 指向 F:\学习\data\chat.db。
+
+2. __file__ 是什么
+__file__ 表示当前 .py 文件的位置。
+以下例子专门以项目文件 F:\学习\项目\fastapi_ai_service\src\database.py 为准，不是以这份笔记文件为准。
+Path(__file__).resolve() 得到这个文件的完整路径。
+
+3. parents 为什么从 0 开始
+parents 是“从当前文件最近的父目录开始，逐层往外”的序列；Python 序列的下标从 0 开始。
+
+当前文件：F:\学习\项目\fastapi_ai_service\src\database.py
+parents[0]：F:\学习\项目\fastapi_ai_service\src
+parents[1]：F:\学习\项目\fastapi_ai_service
+parents[2]：F:\学习\项目
+
+记法：0 是文件紧挨着的目录；数字每加 1，就再往外一层。
+
+4. 用 / 拼路径
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DATABASE_PATH = PROJECT_ROOT / "data" / "chat.db"
+
+以上代码在 src/database.py 中运行时：
+PROJECT_ROOT = F:\学习\项目\fastapi_ai_service
+DATABASE_PATH = F:\学习\项目\fastapi_ai_service\data\chat.db
+
+如果写 PROJECT_ROOT / "src" / "schema.sql"，完整路径是：
+F:\学习\项目\fastapi_ai_service\src\schema.sql
+其中 src/schema.sql 只是项目根目录后面的部分，不是完整路径。
+
+5. 一句话区分
+Path("data/chat.db") 这样的相对路径受当前工作目录影响；
+用 __file__ 找到项目根目录后再拼出的完整路径，不会因为从别的工作目录启动程序而指向别处。
