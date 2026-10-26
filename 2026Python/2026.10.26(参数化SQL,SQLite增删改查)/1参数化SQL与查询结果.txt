@@ -1,0 +1,42 @@
+参数化 SQL 与查询结果
+
+1. Python 怎样把值传给 SQL
+SQL 句子里用 ? 留出值的位置，execute 的第二个参数按从左到右的顺序提供值。
+这样 SQL 的结构保持固定，用户输入作为数据值传入，不直接拼进 SQL 字符串。
+
+例子：
+cid = 2
+role = "user"
+cursor = conn.execute(
+    "SELECT id, content FROM messages WHERE conversation_id = ? AND role = ?",
+    (cid, role),
+)
+第一个 ? 对应 cid，第二个 ? 对应 role。
+
+2. conn、execute、cursor 的分工
+conn 是数据库连接。
+conn.execute(SQL, 参数组) 让数据库执行 SQL；查询时会得到 cursor。
+SQL 中的 SELECT ... FROM ... WHERE ... 负责找记录；fetchone/fetchall 负责把找到的记录取回 Python。
+
+3. 取查询结果
+cursor.fetchone()：每调用一次取下一行；没有下一行时得到 None。
+cursor.fetchall()：一次取出剩余所有行，得到列表；如果没有剩余行，得到空列表 []。
+注意类型：[] 是列表，不是 Python 的集合（set）。默认情况下，列表里的每一行是元组。
+例如 [(4, "正式"), (5, "保留")]：外面的 [] 表示两行组成的列表，里面的 (4, "正式") 和 (5, "保留") 分别是一行元组。没有任何行时，外层列表就是 []，里面自然没有元组。
+按唯一 id 查一行常用 fetchone；查列表常用 fetchall。
+例子：表中有 (4, "正式") 和 (5, "保留") 时，按 id 查 4 的 fetchone 得到 (4, "正式")；查不存在的 id 99 得到 None；查全表的 fetchall 得到 [(4, "正式"), (5, "保留")]。
+如果表是空的：fetchone 得到 None，fetchall 得到空列表 []。
+要写 () 才是调用方法；rows = cursor.fetchall 只是保存方法本身，没有取行。
+SELECT 只读，不需要为了查询结果调用 commit()。
+
+4. 一个参数为什么有尾逗号
+sqlite3.execute 的第二个参数是一组值；即使只有一个 ?，也要提供只含一个值的参数组。
+(message_id,) 是单元素元组；(message_id) 只是 message_id 自身，不是元组。
+也可写 [message_id]（单元素列表），这时不需要尾逗号。
+这里的 (message_id,) 是传给 execute 的“输入参数组”；它与查询结果是两回事。
+例如 SELECT title WHERE id = ? 传入 (7,)：若查到一行且只选 title，fetchall() 可得到 [("标题",)]；外面的 [] 是结果列表，里面的 ("标题",) 是只含一列的行元组。没查到任何行则是 []。这个例子没有 Python 集合 set。
+
+5. 静态查询
+如果只是 SELECT id, title FROM conversations ORDER BY id ASC，没有动态筛选值，就不需要 ?，也不需要额外参数组。
+
+注意：今天在聊天中完成纸面练习，尚未在 Python 中执行这些查询。

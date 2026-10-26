@@ -1,0 +1,48 @@
+今天练过的 CRUD 函数（conversations 与 messages）
+CRUD 是四类操作的英文缩写：Create 新增、Read 查询、Update 修改、Delete 删除。
+这里说“CRUD 函数”，就是把相应的 SQL 操作写进可重复调用的 Python 函数；LIST 和 GET 都属于 Read 查询。
+
+CREATE 新增会话：
+def create_conversation(conn, title):
+    conn.execute(
+        "INSERT INTO conversations (title) VALUES (?)",
+        (title,),
+    )
+    conn.commit()
+
+LIST 查询所有会话：
+def list_conversations(conn):
+    cursor = conn.execute(
+        "SELECT id, title FROM conversations ORDER BY id ASC"
+    )
+    return cursor.fetchall()
+
+GET 按 id 查询一条会话：
+def get_conversation_by_id(conn, target_id):
+    cursor = conn.execute(
+        "SELECT id, title FROM conversations WHERE id = ?",
+        (target_id,),
+    )
+    return cursor.fetchone()
+
+UPDATE 修改指定会话的标题：
+def rename_conversation(conn, conversation_id, new_title):
+    conn.execute(
+        "UPDATE conversations SET title = ? WHERE id = ?",
+        (new_title, conversation_id),
+    )
+    conn.commit()
+
+DELETE 删除指定消息：
+def delete_message(conn, message_id):
+    conn.execute(
+        "DELETE FROM messages WHERE id = ?",
+        (message_id,),
+    )
+    conn.commit()
+
+注意：
+1. INSERT、UPDATE、DELETE 是写操作，需要提交；SELECT 查询不需 commit。
+2. UPDATE、DELETE 要按题意写 WHERE，避免改动或删除整表数据。
+3. 函数名与变量名要前后一致；ORDER BY 后面必须有列名。
+4. 上面的函数是今天纸面练习的整理版，还没有组装进项目文件，也没有运行验收。
