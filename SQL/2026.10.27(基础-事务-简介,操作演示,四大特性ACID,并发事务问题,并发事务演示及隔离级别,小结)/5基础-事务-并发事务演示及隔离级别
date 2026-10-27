@@ -1,0 +1,15 @@
+事务隔离级别
+隔离级别              脏读        不可重复读      幻读
+Read uncommitted      √              √           √
+Read committed        ×              √           √
+Repeatable Read(默认) ×              ×           √
+Serializable          ×              ×           ×
+
+-- 查看事务隔离级别
+SELECT @@TRANSACTION_ISOLATION;
+
+-- 设置事务隔离级别
+SET [SESSION | GLOBAL] TRANSACTION ISOLATION LEVEL {READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SERIALIZABLE}
+-- SESSION 代表当前会话的隔离级别
+
+-- 注意:事务隔离级别越高,数据越安全,但是性能越低
