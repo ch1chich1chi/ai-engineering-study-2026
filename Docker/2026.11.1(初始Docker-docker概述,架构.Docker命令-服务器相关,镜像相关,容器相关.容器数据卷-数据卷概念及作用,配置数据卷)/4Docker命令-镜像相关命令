@@ -1,0 +1,23 @@
+Docker镜像相关命令
+
+查看镜像:查看本地所有的镜像
+docker images
+docker images -q 查看所有镜像的ID
+
+搜索镜像:从网络中查找需要的镜像
+docker search redis
+
+拉取镜像(下载)
+docker pull redis(不写版本号默认latest)
+
+hub.docker.com 这个网址可以搜官方的镜像
+
+docker pull redis:5.0
+
+删除镜像 rmi(remove image)
+docker rmi (加上对应的Image ID) ---> 通过对应的ID删
+
+docker rmi redis:latest ---> 通过对应的版本删
+
+docker images -q ---> 看到所有镜像的ID
+docker rmi `docker images -q`(TAB上面的那个按键) ---> 删除所有镜像

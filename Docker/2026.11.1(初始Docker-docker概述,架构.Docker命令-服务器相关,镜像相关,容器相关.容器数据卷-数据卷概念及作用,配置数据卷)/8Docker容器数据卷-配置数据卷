@@ -1,0 +1,73 @@
+配置数据卷
+
+创建启动容器时,使用-v参数设置数据卷
+docker run ... -v 宿主机目录(文件):容器内目录(文件) ...
+
+注意事项:
+    1.目录必须是绝对路径
+    2.如果目录不存在,会自动创建
+    3.可以挂载多个数据卷
+
+docker run -it --name=c1 -v /root(~就是root用户的根目录,写~也是代表/root,~只能在宿主机里写,不能再容器里写)/data:/root/data_container centos:7 /bin/bash
+
+cd ~
+
+克隆一个会话
+ll(ls -l)(详细列出当前文件夹里有什么)
+
+cd data
+
+touch itheima.txt
+
+切回到容器
+cd data_container
+
+ll
+
+echo itcast > a.txt
+
+ll
+
+cat a.txt
+
+切回到宿主机
+ll
+
+cat a.txt
+
+exit
+
+docker ps -a
+
+docker rm c1
+
+docker ps -a
+
+cd ..
+
+ll
+
+cd data
+
+ll
+
+切回到容器
+docker run -it --name=c1 -v ~/data:/root/data_container centos:7 (/bin/bash ---> 可省略不写)
+
+cd ~
+
+ll
+
+cd data_container
+
+ll
+
+
+docker run -it --name=c2 \('\'代表命令还没敲完,按个回车继续敲)
+-v ~/data2:/root/data2 \
+-v ~/data3:/root/data3 \
+centos:7
+
+cd ~
+
+ll

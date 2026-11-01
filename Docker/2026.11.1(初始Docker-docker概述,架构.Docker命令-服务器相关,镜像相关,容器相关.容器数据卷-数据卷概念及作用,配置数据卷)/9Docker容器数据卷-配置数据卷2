@@ -1,0 +1,25 @@
+docker ps -a
+ll
+
+cd data
+ll
+
+docker run -it --name=c3 -v ~/data:/root/data centos:7
+
+cd ~
+ll
+
+cd data
+ll
+
+docker run -it --name=c4 -v ~/data:/root/data centos:7
+
+cd ~/data
+ll
+
+echo itcast > itcast.txt
+ll
+
+cat itcast.txt
+
+-- c3里也有
