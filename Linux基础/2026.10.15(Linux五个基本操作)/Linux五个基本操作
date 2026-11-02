@@ -1,0 +1,54 @@
+这份历史练习实际使用Windows PowerShell；部分名称与Linux相同，但参数与行为不保证相同。
+
+一、pwd
+
+pwd
+显示当前所在目录。
+
+示例结果:
+F:\python的学习\fastapi_ai_service
+
+二、ls
+
+ls
+列出当前目录中的文件和文件夹。
+
+三、mkdir
+
+mkdir terminal_practice
+创建名为 terminal_practice 的文件夹。
+
+四、cd
+
+cd terminal_practice
+进入 terminal_practice 文件夹。
+
+cd ..
+返回上一级目录。
+
+其中 .. 表示上一级目录。
+
+五、rm
+
+rm terminal_practice
+在PowerShell里删除名为terminal_practice的空文件夹；Linux删除空目录通常用rmdir，不能直接照搬此处rm写法。
+
+rm 是删除命令,不要对不确定的路径使用。
+
+六、今天的完整练习顺序
+
+pwd
+ls
+mkdir terminal_practice
+cd terminal_practice
+pwd
+ls
+cd ..
+rm terminal_practice
+ls
+
+练习结果:
+- 成功创建并进入临时目录。
+- 成功返回上一级目录。
+- 成功删除临时目录。
+- 项目中没有留下无关文件。

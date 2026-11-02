@@ -1,0 +1,41 @@
+Linux基础：用户与路径补充（2026-11-02学习）
+pwd、ls、mkdir、cd和返回上一级的基本用法见10月旧笔记，本份不重写。
+
+一、看清当前环境与位置
+
+PS F:\学习\Linux基础>：Windows PowerShell，当前目录是F:\学习\Linux基础。
+/ #：本次Linux练习终端，当前目录是/。
+提示符由终端显示，不需要自己输入；pwd可以确认实际位置。
+
+二、绝对路径与相对路径
+
+绝对路径写完整位置：
+Windows：cd 'F:\学习\Linux基础'
+Linux：cd /root/linux-practice
+
+相对路径从当前目录出发：
+当前F:\学习，cd Linux基础会找F:\学习\Linux基础。
+当前F:\学习\SQL，同一命令会找F:\学习\SQL\Linux基础。
+目标不存在就报错，不会自动返回上一级再找。
+
+三、根目录和用户主目录
+
+/：Linux根目录，整个目录树的起点。
+~：当前用户的主目录，不是当前目录，也不是固定/root。
+/root：root用户通常使用的主目录。
+其他用户的主目录可能是/home/用户名。
+
+whoami
+查看当前用户名；本次输出root。
+
+cd ~
+pwd
+本次Linux中输出/root；Windows PowerShell中输出C:\Users\m2141。
+
+四、提示符中的~
+
+~ #对应/root；~/linux-practice #对应/root/linux-practice。
+只是把用户主目录简写成~，实际路径用pwd确认。
+从/root执行cd ..会回到/。
+
+root通常拥有Linux系统管理权限；所在环境的隔离和配置仍可能限制它。

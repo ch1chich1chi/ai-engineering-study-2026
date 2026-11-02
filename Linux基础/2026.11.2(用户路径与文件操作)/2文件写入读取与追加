@@ -1,0 +1,37 @@
+Linux基础：文件写入、读取与追加（2026-11-02学习）
+以下在Linux的sh中操作；目录创建基本用法见旧笔记。
+
+一、创建可重复使用的练习目录
+
+mkdir -p /root/linux-practice
+cd /root/linux-practice
+
+-p：上级目录不存在时一起创建，目录已存在时不报错。
+创建目录不会自动进入目录，需要再执行cd。
+
+二、echo与覆盖写入
+
+echo "hello Linux"
+输出文字。
+
+echo "hello Linux" > note.txt
+把输出写入文件；文件不存在时创建，存在时覆盖原内容。
+当前文件完整路径为/root/linux-practice/note.txt。
+
+三、cat：显示文件内容
+
+cat note.txt
+也可以写完整路径：cat /root/linux-practice/note.txt。
+
+四、>>：追加，不覆盖原内容
+
+echo "second line" >> note.txt
+cat note.txt
+
+结果：
+hello Linux
+second line
+
+>覆盖，>>追加，cat读取；这些操作不会切换当前目录。
+单引号和双引号在本例纯文字中效果相同，不能推广到变量展开等所有情况。
+PowerShell的同名命令与Linux命令不保证参数、编码和行为全部相同。
