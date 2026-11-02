@@ -1,0 +1,31 @@
+Docker基础补充（2026-11-02学习）
+run/ps/start/exec/stop/rm用法已纠正在11月1日的容器笔记，本份不重写。
+
+一、本机运行环境
+
+Windows上安装Docker Desktop，WSL 2提供Linux环境，Docker引擎管理Linux容器。
+PowerShell里的docker工具发指令，不代表PowerShell自身进入了Linux。
+镜像类似模板，容器是根据镜像创建的实例，可以启动和停止。
+
+先打开Docker Desktop，等Engine running；找不到引擎时换目录没有用。
+docker info --format '{{.OSType}}'
+本机输出linux，只查看引擎类型，格式模板目前不用背。
+
+二、默认程序
+
+Alpine是Linux镜像名；本次默认程序/bin/sh。
+sh接收并执行命令，也能运行脚本；Bash是另一种Shell程序。
+因此本次run alpine末尾不写sh也能启动它，不代表所有镜像默认都相同。
+
+三、镜像存储
+
+Docker程序：F:\Docker\App
+主要数据：F:\Docker\Data
+docker pull使用Docker配置的存储位置，不放到终端当前目录。
+
+四、logs：看程序输出
+
+docker logs background-demo
+本次输出hello；这是后台echo hello留下的输出。
+容器停止后仍可查看已保存输出。
+logs不会自动读取容器中任意文件里的日志。

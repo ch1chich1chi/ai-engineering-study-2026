@@ -1,0 +1,23 @@
+Docker基础：本机绑定挂载实例（2026-11-02学习）
+-v的基础用法已在11月1日的数据卷笔记中，不重复展开。
+
+一、本次实际位置
+
+Windows：F:\学习\Linux基础\shared
+容器：/pracitce
+目标目录曾拼错，沿用实际名字仍可挂载；它不是固定关键字。
+
+文件在容器中是/pracitce/mount-note.txt，
+在Windows中是F:\学习\Linux基础\shared\mount-note.txt。
+本次删除mount-demo后，Windows仍能读到from container。
+
+二、目标路径改变，容器内文件路径也改变
+
+如果新容器把同一个Windows目录挂到/data，文件就是：
+/data/mount-note.txt
+不能继续写旧容器的/pracitce。
+
+三、区分两个参数
+
+-p对应网络端口；-v这里对应文件目录。
+本次绑定挂载已跟练，变式目标路径仍需补练；不等于整节独立通过。
