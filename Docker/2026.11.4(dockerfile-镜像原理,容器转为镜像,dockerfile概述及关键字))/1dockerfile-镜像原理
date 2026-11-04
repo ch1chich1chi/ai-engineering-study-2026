@@ -1,0 +1,15 @@
+Docker镜像原理
+
+Linux文件系统由bootfs和rootfs两部分组成
+    bootfs:包含bootloader(引导加载程序)和kernel(内核)
+    rootfs:root文件系统,包含的就是典型的Linux系统中的/dev,/proc/bin,/etc等标准目录和文件
+    不同的linux发行版,bootfs基本一样,而rootfs不同,如ubuntu,centos等
+
+Docker镜像原理
+    Docker就像是有特殊的文件系统叠加而成
+    最低端是bootfs,并使用宿主机的bootfs
+    第二次是root文件系统rootfs,称为base image
+    然后在往上可以叠加其他的镜像文件
+    统一文件系统(Union File System)技术能够将不同的层整合成一个文件系统,为这些层提供了一个统一的视角,这样就隐藏了多层的存在,在用户的角度看来,只存在一个文件系统
+    一个镜像可以放在另一个镜像的上面.位于下面的镜像称为父镜像,最底部的镜像称为基础镜像
+    当从一个镜像启动容器时,Docker会在最顶层加载一个读写文件系统作为容器

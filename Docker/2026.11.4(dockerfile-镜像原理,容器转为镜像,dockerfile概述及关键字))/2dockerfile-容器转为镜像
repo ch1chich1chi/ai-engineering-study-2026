@@ -1,0 +1,9 @@
+镜像制作
+
+Docker镜像如何制作?
+1.容器转为镜像
+docker commit 容器id 镜像名称:版本号
+docker save -o 压缩文件名称 镜像名称:版本号 (镜像压缩文件)
+docker load -i 压缩文件名称 (压缩文件变镜像)
+
+2.dockerfile
