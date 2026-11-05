@@ -1,0 +1,39 @@
+1.创建docker-compose目录
+mkdir ~/docker-compose
+cd ~/docker-compose
+
+2.编写docker-compose.yml文件(也可以是.yaml文件)
+vim docker-nano.yml
+
+version: '3'
+services:
+  nginx:
+    image: nginx
+    ports:
+     - 80:80
+    links:
+     - app
+    volumes:
+     - ./nginx/conf.d:/etc/nginx/conf.d
+    app:
+      image: app
+      expose:
+        - '8080'
+
+3.创建./nginx/conf.d目录
+mkdir -p ./nginx/conf.d
+
+4.在./nginx/conf.d目录下 编写nginx.conf文件
+server {
+    listen 80;
+    access_log off;
+
+    location / {
+        proxy_pass http://app:8080;
+    }
+}
+
+5.在~/docker-compose目录下 使用docker-compose启动容器
+docker-compose up
+
+6.测试访问

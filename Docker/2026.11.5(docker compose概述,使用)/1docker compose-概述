@@ -1,0 +1,8 @@
+服务编排
+按照一定的业务规则批量管理容器
+
+Docker Compose
+Docker Compose是一个编排多容器分布部署的工具,提供命令集管理容器化应用的完整开发周期,包括构建,启动和停止.使用步骤:
+    1.利用Dockerfile定义运行环境镜像
+    2.使用docker-compose.yml定义组成应用的各服务
+    3.运行docker-compose up启动应用
