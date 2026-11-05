@@ -1,0 +1,8 @@
+LESSON_LABEL='hello agent'
+
+echo "$LESSON_LABEL"
+echo '$LESSON_LABEL'
+
+输出结果分别是:
+hello agent
+$LESSON_LABEL

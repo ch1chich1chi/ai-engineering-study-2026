@@ -1,0 +1,16 @@
+export:给程序传配置
+1.先赋值,再导出
+STUDY_FLAG=ready
+export STUDY_FLAG
+
+2.也可以合成一行
+export STUDY_FLAG=ready
+
+PATH
+保存查找命令程序的目录清单,Linux用冒号 : 分隔目录
+
+PATH:变量名
+$PATH:取出PATH当前的值
+
+echo "$PATH":显示目录清单
+command -v
