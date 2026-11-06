@@ -1,0 +1,13 @@
+1.体系结构
+连接层 服务层 引擎层 存储层
+
+2.存储引擎简介
+SHOW ENGINES;
+CREATE TABLE xxxx(...)ENGINE=INNODB;
+
+3.存储引擎特点
+INNODB与MyISAM:事务,外键,行级锁
+
+4.存储引擎应用
+INNODB:存储业务系统中对于事务 数据完整性要求较高的核心数据
+MyISAM:存储业务系统的非核心事务

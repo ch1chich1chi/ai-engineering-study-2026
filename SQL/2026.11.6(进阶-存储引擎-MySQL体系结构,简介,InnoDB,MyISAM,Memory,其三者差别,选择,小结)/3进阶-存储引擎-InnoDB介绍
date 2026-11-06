@@ -1,0 +1,25 @@
+存储引擎特点
+InnoDB
+介绍:
+  InnoDB是一种兼顾高可靠性和高性能的通用存储引擎,在MySQL5.5之后,InnoDB是默认的MySQL存储引擎
+
+特点:
+  DML操作遵循ACID模型,支持事务;
+  行级锁,提高并发访问性能;
+  支持外键FOREIGN KEY约束,保证数据的完整性和正确性;
+文件:
+  xxx.ibd:xxx代表的是表名,InnoDB引擎的每张表都会对应这样一个表空间文件,存储表的表结构(frm sdi) 数据和索引
+  参数:innodb_file_per_table
+
+查看系统的变量
+SHOW VARIABLES LIKE 'innodb_file_per_table';
+
+查看文件可以去cmd里看,输入:
+ibd2sdi 表名.idb
+
+逻辑存储结构
+TableSpace:表空间
+Seqment:段
+Extent:区(大小固定1M,最大包含64个页)
+Page:页(磁盘操作最小单元,大小固定16K)
+Row:行

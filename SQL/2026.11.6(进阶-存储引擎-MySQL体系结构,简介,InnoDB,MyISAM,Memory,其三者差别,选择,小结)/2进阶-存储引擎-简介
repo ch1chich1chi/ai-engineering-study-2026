@@ -1,0 +1,28 @@
+存储引擎简介
+存储引擎就是存储数据 建立索引 更新/查询数据等技术的实现方式.存储引擎是基于表的,而不是基于库的,所以存储引擎也可以被称为表类型
+
+1.在创建表时,指定存储引擎
+CREATE TABLE 表名(
+    字段1 字段1类型 [COMMENT 字段1注释],
+    ...
+    字段n 字段n类型 [COMMENT 字段n注释]
+)ENGINE=存储引擎类型 [COMMENT 表注释];
+
+2.查看当前数据库支持的存储引擎
+SHOW ENGINES;
+
+DEFAULT:当前数据库默认的存储引擎类型
+
+-- 创建表 my_myisam,并指定MyISAM存储引擎
+CREATE TABLE my_myisam(
+    id INT,
+    name VARCHAR(10)
+) ENGINE = MyISAM;
+
+-- 创建表 my_memory,并指定Memory存储引擎
+CREATE TABLE my_memory(
+    id INT,
+    name VARCHAR(10)
+) ENGINE = Memory;
+
+SHOW VARIABLES LIKE 'innodb_file_per_table';
