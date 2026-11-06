@@ -16,7 +16,7 @@
     提交事务
     COMMIT;
 
-    回顾事务
+    回滚事务
     ROLLBACK;
 
 CREATE TABLE account(
