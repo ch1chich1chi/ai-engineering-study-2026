@@ -1,0 +1,8 @@
+1.用户管理
+CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
+ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql_native_password '新密码';
+DROP USER '用户名'@'主机名';
+
+2.权限控制
+GRANT 权限列表 ON 数据库名.表名 TO '用户名'@'主机名';
+REVOKE 权限列表 ON 数据库名.表名 FROM '用户名'@'主机名';
