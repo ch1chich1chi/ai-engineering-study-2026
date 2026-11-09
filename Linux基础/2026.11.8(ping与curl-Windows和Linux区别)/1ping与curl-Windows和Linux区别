@@ -1,0 +1,16 @@
+ping:检查网络探测回应
+curl:发送HTTP请求,检查具体地址和接口的响应
+
+Windows:
+# ping -n 次数 目标地址
+ping -n 2 127.0.0.1
+
+curl.exe -i http://127.0.0.1:9000/health
+
+Linux:
+# ping -c 次数 目标地址
+ping -c 2 127.0.0.1
+
+curl -i http://127.0.0.1:9000/health
+
+-i:显示HTTP状态行,响应头和正文
