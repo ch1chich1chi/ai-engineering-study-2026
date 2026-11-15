@@ -12,7 +12,7 @@ LLM的上下文窗口有限,不能将加载的整个文档扔进去,需要将文
 滑动窗口切分     固定窗口,通过高重叠率(如20%)滑动生成连续分块,保留上下文
 结构感知切分    利用文档元数据(如Markdown/HTML标题)识别区分逻辑区块进行切分
 
-LangChain中提供了各种不同的切分策略,并且提供了统一的接口:TestSplitter
+LangChain中提供了各种不同的切分策略,并且提供了统一的接口:TextSplitter
 class TestSplitter(BaseDocumentTransformer,ABC):
     @abstractmethod
     def split_text(self,text: str) -> List[str]:
