@@ -1,7 +1,7 @@
 PyPDFLoader是LangChain社区提供的一款文档加载器,可以把PDF解析文简单的文本
 
 class BaseLoader(ABC):
-    def load(self) -> List[Document]:
+    def load(self) -> list[Document]:
         """加载文档"""
         
         return list(self.lazy_load())
