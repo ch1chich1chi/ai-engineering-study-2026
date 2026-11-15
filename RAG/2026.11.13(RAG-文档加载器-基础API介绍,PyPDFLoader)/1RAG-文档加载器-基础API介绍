@@ -9,7 +9,7 @@ class BaseMedia(Serializable):
     id : str | None
     """唯一标识,可选"""
 
-    metadata:dict[Any,Any]
+    metadata:dict[any,any]
     """与内容关联的元数据"""
 
 class Document(BaseMedia):
