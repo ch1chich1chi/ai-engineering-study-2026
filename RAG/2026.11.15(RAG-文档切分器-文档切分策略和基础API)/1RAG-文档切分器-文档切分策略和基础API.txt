@@ -1,0 +1,31 @@
+文档切分策略
+LLM的上下文窗口有限,不能将加载的整个文档扔进去,需要将文档切分成合适大小的块(chunk)
+
+注意事项:
+    块越小,向量语义越精准,语义完整度越低
+    块越大,向量语义越泛化,语义完整度越高
+
+策略名称                            核心原理
+语义切分        用嵌入模型计算相邻句子相似度,在低阈值时切分,识别主题转折点
+固定切分长度                按预设字符数或Token数切分
+递归切分        按优先级分隔符(如段落\n\n > 句子)逐级递归分割,直至满足大小要求
+滑动窗口切分     固定窗口,通过高重叠率(如20%)滑动生成连续分块,保留上下文
+结构感知切分    利用文档元数据(如Markdown/HTML标题)识别区分逻辑区块进行切分
+
+LangChain中提供了各种不同的切分策略,并且提供了统一的接口:TestSplitter
+class TestSplitter(BaseDocumentTransformer,ABC):
+    @abstractmethod
+    def split_text(self,text: str) -> List[str]:
+        """Split text
+        Args:
+            text: The text to split
+        Returns:
+            A list of text chunks
+        """
+    def split_documents(self,documents: Iterable[Document]) -> list[Document]:
+        """Split documents
+        Args:
+            documents: The documents to split
+        Returns:
+            A list of split documents
+        """
