@@ -15,7 +15,7 @@ LLM的上下文窗口有限,不能将加载的整个文档扔进去,需要将文
 LangChain中提供了各种不同的切分策略,并且提供了统一的接口:TextSplitter
 class TestSplitter(BaseDocumentTransformer,ABC):
     @abstractmethod
-    def split_text(self,text: str) -> List[str]:
+    def split_text(self,text: str) -> list[str]:
         """Split text
         Args:
             text: The text to split
