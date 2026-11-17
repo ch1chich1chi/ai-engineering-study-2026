@@ -1,0 +1,8 @@
+向量数据库-VectorStore
+向量数据库用于存储和检索向量化后的文档.LangChain支持多种向量数据库,并提供了统一的接口VectorStore.
+
+向量库                    特点                    适用场景
+InMemoryVectorStore 内存存储,零配置                测试学习
+Chroma             轻量级,支持持久化               中小规模
+FAISS               高性能,支持GPU                大规模检索
+Milvus              高性能,支持GPU                大规模检索
