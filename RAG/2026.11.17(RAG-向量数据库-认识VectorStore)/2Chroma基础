@@ -1,0 +1,28 @@
+Chroma 基础
+Chroma 是向量数据库,用来保存文本片段 向量和来源信息,供后续检索使用
+
+1.collection
+collection 是一组数据的集合,可以理解为存放同一类资料的地方
+
+
+2.每条数据包含什么
+    id:片段的唯一标识,如 rule-1
+    document:原文片段
+    embedding:原文对应的向量
+    metadata:附加信息,如 source(来源文件) chunk_index(片段序号)
+
+同一个来源文件可以有多个片段,所以 source 相同,id 也可以不同
+
+3.upsert:新增或更新
+    id 不存在:新增一条
+    id 已存在:更新这条数据
+
+4.get 和 where:读取与筛选
+get 用来读取数据
+where 可以按 metadata 筛选,如只读取 source 为"a.txt"的片段
+
+筛选只影响本次返回的数据,不会删除其他记录
+
+5.持久化保存
+PersistentClient 会把数据保存到指定磁盘目录
+关闭程序后数据仍在,下次使用同一路径可以继续读取
